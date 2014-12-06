@@ -30,7 +30,7 @@
     </nav>
     <div class="container">
         <div class="row smpl-step" style="border-bottom: 0; min-width: 500px;">
-            <div class="col-xs-3 smpl-step-step active">
+            <div class="col-xs-3 smpl-step-step complete">
                 <div class="text-center smpl-step-num">Step 1</div>
                 <div class="progress">
                     <div class="progress-bar"></div>
@@ -39,7 +39,7 @@
                 <div class="smpl-step-info text-center">Search Flight</div>
             </div>
 
-            <div class="col-xs-3 smpl-step-step disabled">           
+            <div class="col-xs-3 smpl-step-step complete">           
                 <div class="text-center smpl-step-num">Step 2</div>
                 <div class="progress">
                     <div class="progress-bar"></div>
@@ -47,7 +47,7 @@
                 <a class="smpl-step-icon"><i class="fa fa-dollar" style="font-size: 60px; padding-left: 18px; padding-top: 5px; color: black;"></i></a>
                 <div class="smpl-step-info text-center">Choose Flight</div>
             </div>
-            <div class="col-xs-3 smpl-step-step disabled">          
+            <div class="col-xs-3 smpl-step-step active">          
                 <div class="text-center smpl-step-num">Step 3</div>
                 <div class="progress">
                     <div class="progress-bar"></div>
@@ -66,65 +66,81 @@
         </div>
     </div>
     <div class="container">
-      <h2>Flight Search</h2>
+      <h2>Fill Your Booking Details</h2>
       <form class="form-horizontal" role="form">
         <div class="form-group">
-          <label class="control-label col-sm-2" for="email">From:</label>
+          <label class="control-label col-sm-2" for="Name:">Surname:</label>
           <div class="col-sm-10">
-            <select class="form-control" id="from">
-              <option>Kuala Lumpur (KUL)</option>
-              <option>Jakarta (CGK)</option>
-              <option>Singapore (SIN)</option>
-              <option>Bangkok (DMK)</option>
-            </select>
+            <input type="text" class="form-control" id="surname">
           </div>
         </div>
         <div class="form-group">
-          <label class="control-label col-sm-2" for="pwd">To:</label>
+          <label class="control-label col-sm-2" for="Name:">Given Name:</label>
           <div class="col-sm-10">
-            <select class="form-control" id="to">
-              <option>Kuala Lumpur (KUL)</option>
-              <option>Jakarta (CGK)</option>
-              <option>Singapore (SIN)</option>
-              <option>Bangkok (DMK)</option>
-            </select>
+            <input type="text" class="form-control" id="givenname">
           </div>
         </div>
-        <div class="form-group">        
-          
-          <label class="control-label col-sm-2" for="pwd">Flight Date:</label>
-          <div class="col-sm-10">
-            <div id="datetimepicker" class="input-append date">
-              <input class="form-control col-sm-10" type="text"></input>
-                <span class="add-on">
-                  <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-                </span>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="Gender:">Gender:</label>
+          <div class="radio col-sm-10">
+            <label><input type="radio" name="gender" id="gender">Male</label>
+            <label><input type="radio" name="gender" id="gender">Female</label>
           </div>
-          <script type="text/javascript"
-           src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
-          </script> 
-          <script type="text/javascript"
-           src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
-          </script>
-          <script type="text/javascript"
-           src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
-          </script>
-          <script type="text/javascript"
-           src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
-          </script>
-          <script type="text/javascript">
-            $('#datetimepicker').datetimepicker({
-              pickTime: false
-
-            });
-          </script>
-          </div>
-
         </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="Name:">Address:</label>
+          <div class="col-sm-10">
+            <textarea class="form-control" rows="5" id="address"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="Name:" >Nationality:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control id="nationality"">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="Name:">Phone Number</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="phonenumber">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="Name:">Passport No:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="passport">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="Name:">Email:</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="email">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="Gender:">Payment Method:</label>
+          <div class="radio col-sm-10">
+            <label><input type="radio" name="gender" id="method">Visa</label>
+            <label><input type="radio" name="gender" id="method">Master</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="Name:">Card Number:</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="card">
+          </div>
+        </div>
+
+
+
+
+        
+        
 
         <div class="form-group">        
           <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">Search</button>
+            <button type="submit" class="btn btn-default">Book</button>
           </div>
         </div>
       </form>
