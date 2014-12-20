@@ -71,6 +71,8 @@
             </div>
         </div>
     </div>
+
+    
       
     <div class="container">
       <h2>Choose Your Flight</h2>
@@ -94,15 +96,27 @@
           <tbody>
             <?php
                 
-                $DepartureCity=$_POST['departFlight'];
-                $ArrivalCity=$_POST['arrival'];
-                $DepartureDate=$_POST['departdate'];
+                $departure=$_POST['departure'];
+                $arrival=$_POST['arrival'];
+                $departdate=$_POST['departdate'];
 
-                $query="SELECT * FROM flightX WHERE DepartureCity=$DepartureCity AND ArrivalCity = $ArrivalCity AND DepartureDate = $DepartureDate";
-                $result=mysqli_query($query);
+                $query="SELECT id FROM flightsX WHERE prefix=$departure AND ArrivalCity = '$arrival' ";
+                print $query;
+                //$result=mysqli_query($query);
 
                 $num=mysqli_numrows($result);
                 mysql_close();
+
+                //wenyu
+
+                if($result = $mysqli->query($query))
+                {
+                    while ($row = $result->fetch_assoc()){
+                        printf ("%s (%s)\n", $row["id"], $row["prefix"]);
+                    }
+                }
+
+                //wenyu
 
                 $i=0;
                 while ($i < $num) {
