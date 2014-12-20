@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>G5 Landing Page</title>      
       
@@ -11,55 +11,37 @@
     <link rel="stylesheet" type="text/css" media="screen"
      href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="css/progress.css">
-    
     <?php
-        $ArrivalCity = intval($_GET['ArrivalCity']);
-
-        $con = mysqli_connect('localhost','khcy3nti_vic','V7ba2oPhQrkM','khcy3nti_g5-Airlines');
-        if (!$con) {
-            die('Could not connect: ' . mysqli_error($con));
-        }
+    // Database connection
+    require 'databaseConfig.php';
     ?>
+      
     <script>
-    function showFlights(str) {
-        if (str=="") {
-            document.getElementById("txtHint").innerHTML="";
-        return;
-        } 
-        
-        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp=new XMLHttpRequest();
-        }else { // code for IE6, IE5
-            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        
-        xmlhttp.onreadystatechange=function() {
-            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
-            }
-        }
-        xmlhttp.open("GET","index.php?q="+str,true);
-        xmlhttp.send();
+    function reload(form){
+        var val=form.departure.options[form.departure.options.selectedIndex].value;
+        self.location='index.php?departure=' + val ;
     }
-</script>
+    </script>
 </head>
-
-  <body>
+    
+<body>
+    <!--Navigation menu bar -->
     <nav class="navbar navbar-inverse navbar-static-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">G5 Airlines</a>
+          <a class="navbar-brand" href="index.php">G5 Airlines</a>
         </div>
         <div>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">Home</a></li>
-            <li><a href="searchResult.html">Choose Flight</a></li>
+            <li class="active"><a href="index.php">Home</a></li>
+            <li><a href="chooseFlight.php">Choose Flight</a></li>
             <li><a href="bookFlight.html">Book Flight</a></li> 
             <li><a href="contact-us.html">Contact Us</a></li> 
           </ul>
         </div>
       </div>
     </nav>
+    <!--Progress Bar-->
     <div class="container">
         <div class="row smpl-step" style="border-bottom: 0; min-width: 500px;">
             <div class="col-xs-3 smpl-step-step active">
@@ -97,93 +79,79 @@
             </div>
         </div>
     </div>
+       
     <div class="container">
       <h2>Flight Search</h2>
-      <form class="form-horizontal" role="form">
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="email">From:</label>
-          <div class="col-sm-10">
-            <select class="form-control" id="from" name="flights" onchange="showFlights(this.value)">
-                <option value="">Choose Departure City:</option>
-                <option value="1">Kuala Lumpur (KUL)</option>
-                <option value="2">Jakarta (CGK)</option>
-                <option value="3">Singapore (SIN)</option>
-                <option value="4">Bangkok (DMK)</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="pwd">To:</label>
-          <div class="col-sm-10">
-              <select class="form-control" id="to">
-                  
-            <?php
-
-                mysqli_select_db($con,"khcy3nti_g5-Airlines");
-                $sql="SELECT ArrivalCity FROM flights WHERE DepartureCity='".Kuala ."' '".Lumpur ."' '".(KUL)."'";
-                $result = mysqli_query($con,$sql); 
-                while($row = mysqli_fetch_array($result)) {
-                    echo "<option>" . $row['ArrivalCity'] . "</option>";
-                    
+        
+        <!--Departure Flight--> 
+        <?php
+            // Use this line or below line if register_global is off
+            @$departure=$_GET['departure'];
+            // to check if $departure is numeric data or not. 
+            if(strlen($departure) > 0 and !is_numeric($departure)){ 
+                echo "Data Error";
+                exit;
+            }
+            // Getting data for first list box
+            $quer2="SELECT DISTINCT departure,flight_id FROM departure order by departure"; 
+            // Getting data for second drop down list we will check if departure is selected else we will display all the arrival flights
+            if(isset($departure) and strlen($departure) > 0){
+                $quer="SELECT DISTINCT arrival FROM arrival where flight_id=$departure order by arrival"; 
+            }else{$quer="SELECT DISTINCT arrival FROM arrival order by arrival"; } 
+            echo "<form class='form-horizontal' role='form' method='post' action='chooseFlight.php'>";
+            echo "<div class='form-group'>";
+            echo "<label class='control-label col-sm-2' for='Depart'>From:</label>";
+            echo "<div class='col-sm-10'>";
+            echo "<select name='departFlight' onchange=\"reload(this.form)\"><option value=''>Select Departure Flight:</option>";
+            foreach ($dbo->query($quer2) as $noticia2) {
+                if($noticia2['flight_id']==@$departure){
+                    echo "<option selected value='$noticia2[flight_id]'>$noticia2[departure]</option>"."<br>";
+                }else{
+                    echo  "<option value='$noticia2[flight_id]'>$noticia2[departure]</option>";
                 }
-                mysqli_close($con);
-            ?>
-                </select>
-          </div>
-        </div>
-        </form>
-    <form class="form-horizontal" role="form">
-        <div class="form-group">        
-          
-          <label class="control-label col-sm-2" for="pwd">Flight Date:</label>
-          <div class="col-sm-10">
-            <div id="datetimepicker" class="input-append date">
-              <input class="form-control col-sm-10" type="text"></input>
-                <span class="add-on">
-                  <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-                </span>
-          </div>
-          <script type="text/javascript"
-           src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
-          </script> 
-          <script type="text/javascript"
-           src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
-          </script>
-          <script type="text/javascript"
-           src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
-          </script>
-          <script type="text/javascript"
-           src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
-          </script>
-          <script type="text/javascript">
-            $('#datetimepicker').datetimepicker({
-              pickTime: false
+            }
+            echo "</select>";
+            echo "</div>";
+            echo "</div>";      
 
-            });
-          </script>
-          </div>
+            //Starting of second drop downlist
+            echo "<div class='form-group'>";
+            echo "<label class='control-label col-sm-2' for='Arrive'>To:</label>";
+            echo "<div class='col-sm-10'>";
+            echo "<select name='arrival'><option value=''>Select Arrival Flight:</option>";
+            foreach ($dbo->query($quer) as $noticia) {
+                echo  "<option value='$noticia[arrival]'>$noticia[arrival]</option>";
+            }
+            echo "</select>";
+            echo "</div>";
+            echo "</div>";    
+            
+            // Flight Date
+            echo "<div class='form-group'>";
+            echo "<label class='control-label col-sm-2' for='flightdate'>Flight Date:</label>
+            <div class='col-sm-10'>";
+            echo "<input type = 'date' name = 'departdate'>";
+            echo "</div>";
 
-        </div>
-
-        <div class="form-group">        
-          <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">Search</button>
+            echo "<div class='form-group'>        
+          <div class='col-sm-offset-2 col-sm-10'>
+            <input type='submit' class='btn btn-default' value='Search'>
           </div>
         </div>
       </form>
-    </div>
-    
+    </div>";
+?>
 
     <div class="footer navbar-inverse">
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
-            <p><span style="color:white"> &copy; 2014</span> <a href="https://github.com/victorng8/G53SQM">G53 SQM Group 5</a></p>
+            <p><span style="color:white"> &copy; 2014</span> <a href="https://github.com/victorng8/G53SQM">G53 SQM Group E</a></p>
           </div>
         </div>
 
         
       </div>
     </div>
-  </body>
+</body>
 </html>
