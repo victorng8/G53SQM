@@ -2,32 +2,35 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <title>Step 4: Confirm and Pay</title>  
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-responsive.css">
-
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="screen"
-     href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="css/progress.css">
+    <?php
+    // Database connection
+    require 'databaseConfig.php';
+    ?>
 </head>
-  </head>
 
   <body>
     <nav class="navbar navbar-inverse navbar-static-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">G5 Airlines</a>
+          <a class="navbar-brand" href="index.php">G5 Airlines</a>
         </div>
         <div>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Flight Search</a></li>
-            <li><a href="#">Booking</a></li> 
-            <li><a href="#">Contact Us</a></li> 
+            <li class="active"><a href="index.php">Home</a></li>
+            <li><a href="chooseFlight.php">Choose Flight</a></li>
+            <li><a href="bookFlight.html">Book Flight</a></li> 
+            <li><a href="contact-us.html">Contact Us</a></li> 
           </ul>
         </div>
       </div>
     </nav>
+      
+      <!-- Progress Bar -->
     <div class="container">
         <div class="row smpl-step" style="border-bottom: 0; min-width: 500px;">
             <div class="col-xs-3 smpl-step-step complete">
@@ -53,7 +56,7 @@
                     <div class="progress-bar"></div>
                 </div>
                 <a class="smpl-step-icon"><i class="fa fa-repeat" style="font-size: 60px; padding-left: 7px; padding-top: 7px; color: black;"></i></a>
-                <div class="smpl-step-info text-center">Booking Flight</div>
+                <div class="smpl-step-info text-center">Book Flight</div>
             </div>
             <div class="col-xs-3 smpl-step-step active">           
                 <div class="text-center smpl-step-num">Step 4</div>
@@ -65,59 +68,84 @@
             </div>
         </div>
     </div>
+      
+      <!-- Confirmation Details -->
     <div class="container">
-      <h2>Ticket Has Been Booked</h2>
-      <h3> Ticket From Kuala Lumpur (KUL) to Jakarta (CGK)</h3>
-      <h4>Flight on 01 JAN 2015 (JT-808). Departure Time: 09:00. Arrival Time 10:00</h4>
-      <table class="table table-responsive">
+      <h2>Your Ticket Has Been Booked!</h2>
+        
+        <?php
+// Read parameter values from the $_GET array and copy them into variables
+            $surname = $_GET['surname'];
+            $givenname = $_GET['givenname'];
+            $gender = $_GET['gender'];
+            $address = $_GET['address'];
+            $nationality = $_GET['nationality'];
+            $phonenumber = $_GET['phonenumber'];
+            $passport = $_GET['passport'];
+            $email = $_GET['email'];
+            $cardType = $_GET['cardType'];
+            $cardNo = $_GET['cardNo'];
+
+
+            echo "<h3>Ticket From Kuala Lumpur (KUL) to Jakarta (CGK)</h3>
+      <h4>Flight on 01 JAN 2015 (JT-808). Departure Time: 09:00. Arrival Time 10:00</h4>";
+      
+
+            echo "<table class='table table-responsive'>
         <tbody>
           <tr> 
-            <td>Name: </td>
-            <td> John Doe </td>
+            <td>Name:</td>
+            <td>$givenname $surname </td>
           </tr>
           <tr> 
             <td>Gender: </td>
-            <td> Male </td>
+            <td>$gender</td>
           </tr>
           <tr> 
             <td>Address: </td>
-            <td> Nottingham University, Semenyih, Malaysia, 43500 </td>
+            <td>$address</td>
           </tr>
           <tr> 
             <td>Nationality: </td>
-            <td> Malaysia </td>
+            <td>$nationality</td>
           </tr>
           <tr> 
             <td>Phone Number: </td>
-            <td> +601234567 </td>
+            <td>$phonenumber</td>
           </tr>
           <tr> 
             <td>Passport No: </td>
-            <td> A123456 </td>
+            <td>$passport</td>
           </tr>
           <tr> 
-            <td> Email: </td>
-            <td> johndoe@example.com </td>
+            <td>Email:</td>
+            <td>$email</td>
           </tr>
-
+          <tr> 
+            <td>Card Type:</td>
+            <td>$cardType</td>
+          </tr>
+          <tr> 
+            <td>Card Number:</td>
+            <td>$cardNo</td>
+          </tr>";
+        ?>
         </tbody>
         
-
-        
       </table>
-      <button type="button" class="btn btn-primary btn-lg">Print</button>
+            
+      <a href="javascript:void(0)" onclick=window.print()><button type="button" class="btn btn-primary btn-lg">Print</button></a>
+
     </div>
     
-
     <div class="footer navbar-inverse">
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
-            <p><span style="color:white"> &copy; 2014</span> <a href="#">G53 SQM Group 5</a></p>
+            <p><span style="color:white"> &copy; 2014</span> <a href="https://github.com/victorng8/G53SQM">G53 SQM Group E</a></p>
           </div>
         </div>
 
-        
       </div>
     </div>
   </body>
