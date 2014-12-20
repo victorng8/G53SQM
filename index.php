@@ -16,12 +16,17 @@
     require 'databaseConfig.php';
     ?>
       
+    
     <script>
     function reload(form){
         var val=form.departure.options[form.departure.options.selectedIndex].value;
         self.location='index.php?departure=' + val ;
     }
     </script>
+
+
+ 
+
 </head>
     
 <body>
@@ -80,13 +85,17 @@
         </div>
     </div>
        
-    <div class="container">
-      <h2>Flight Search</h2>
+        <div class="container">
+          <h2>Flight Search</h2>
+
+
+       
         
         <!--Departure Flight--> 
         <?php
+
             // Use this line or below line if register_global is off
-            @$departure=$_GET['departure'];
+            $departure=$_GET['departure'];
             // to check if $departure is numeric data or not. 
             if(strlen($departure) > 0 and !is_numeric($departure)){ 
                 echo "Data Error";
@@ -94,15 +103,22 @@
             }
             // Getting data for first list box
             $quer2="SELECT DISTINCT departure,flight_id FROM departure order by departure"; 
+
             // Getting data for second drop down list we will check if departure is selected else we will display all the arrival flights
             if(isset($departure) and strlen($departure) > 0){
+
+
+
                 $quer="SELECT DISTINCT arrival FROM arrival where flight_id=$departure order by arrival"; 
-            }else{$quer="SELECT DISTINCT arrival FROM arrival order by arrival"; } 
-            echo "<form class='form-horizontal' role='form' method='post' action='chooseFlight.php'>";
+            }
+
+            else{$quer="SELECT DISTINCT arrival FROM arrival order by arrival"; } 
+
+            echo "<form class='form-horizontal' role='form' method=post action='chooseFlight.php'>";
             echo "<div class='form-group'>";
             echo "<label class='control-label col-sm-2' for='Depart'>From:</label>";
             echo "<div class='col-sm-10'>";
-            echo "<select name='departFlight' onchange=\"reload(this.form)\"><option value=''>Select Departure Flight:</option>";
+            echo "<select name='departure' onchange=\"reload(this.form)\"><option value=''>Select Departure Flight:</option>";
             foreach ($dbo->query($quer2) as $noticia2) {
                 if($noticia2['flight_id']==@$departure){
                     echo "<option selected value='$noticia2[flight_id]'>$noticia2[departure]</option>"."<br>";
