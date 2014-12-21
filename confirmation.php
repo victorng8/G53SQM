@@ -2,7 +2,8 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <title>Step 4: Confirm and Pay</title>  
+    <link rel="icon" href="images/airplaneFavicon.ico">
+    <title>Step 4: Confirm and Pay</title>  
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-responsive.css">
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
@@ -21,9 +22,7 @@
         </div>
         <div>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.php">Home</a></li>
-            <li><a href="chooseFlight.php">Choose Flight</a></li>
-            <li><a href="bookFlight.html">Book Flight</a></li> 
+            <li><a href="index.php">Home</a></li>
             <li><a href="contact-us.html">Contact Us</a></li> 
           </ul>
         </div>

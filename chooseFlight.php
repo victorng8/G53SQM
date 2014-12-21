@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/airplaneFavicon.ico">
     <title>Step 2: Choose Flight</title> 
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-responsive.css">
@@ -25,9 +26,8 @@
         </div>
         <div>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.php">Home</a></li>
-            <li><a href="chooseFlight.php">Choose Flight</a></li>
-            <li><a href="bookFlight.html">Book Flight</a></li> 
+            <li><a href="index.php">Home</a></li>
+            <li class="active"><a href="chooseFlight.php">Choose Flight</a></li>
             <li><a href="contact-us.html">Contact Us</a></li> 
           </ul>
         </div>
@@ -134,7 +134,7 @@
             
         <div class="form-group">        
           <div class="col-sm-offset-1 col-sm-10">
-            <input type="submit" class="btn btn-default" value = 'Flight Chosen'>
+            <input type="submit" class="btn btn-default" value="Flight Chosen">
           </div>
         </div>
       </form>

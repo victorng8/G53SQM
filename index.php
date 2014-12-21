@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/airplaneFavicon.ico">
     <title>G5 Landing Page</title>      
       
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -39,8 +40,6 @@
         <div>
           <ul class="nav navbar-nav">
             <li class="active"><a href="index.php">Home</a></li>
-            <li><a href="chooseFlight.php">Choose Flight</a></li>
-            <li><a href="bookFlight.html">Book Flight</a></li> 
             <li><a href="contact-us.html">Contact Us</a></li> 
           </ul>
         </div>
