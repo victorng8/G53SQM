@@ -101,9 +101,12 @@
                 $departure=$_POST['departure'];
                 $arrival=$_POST['arrival'];
                 $departdate=$_POST['departdate'];
+                
+
+                //echo $departdate;
 
 
-                $query="SELECT id, prefix, DepartureCity, ArrivalCity, DepartureDate, DepartureTime, ArrivalDate, ArrivalTime, Price FROM flightsX WHERE prefix=$departure AND ArrivalCity = '$arrival' ";
+                $query="SELECT id, prefix, DepartureCity, ArrivalCity, DepartureDate, DepartureTime, ArrivalDate, ArrivalTime, Price FROM flightsX WHERE prefix=$departure AND ArrivalCity = '$arrival' AND DepartureDate='$departdate'";
                 //print $query;
 
                 //$departCity = "SELECT DepartureCity, ArrivalCity FROM flightsX WHERE prefix=1 AND ArrivalCity=";
@@ -112,8 +115,16 @@
                 return $departCityResult->fetchAll(PDO::FETCH_ASSOC);*/
 
                 $result2 = mysqli_query($con,$query);
+                if(mysqli_num_rows($result2) == 0)
+                {
+                 echo "<tr>";
+                echo "<td>Sorry! No available flight!</td>";
+                echo '</tr>';   
+                }
+
                 
                 while($row = mysqli_fetch_assoc($result2)) {
+                   
                 $chooseID = $row["id"];
                 $choosePrefix = $row["prefix"];
                 $chooseDepartureCity = $row["DepartureCity"];
@@ -124,7 +135,7 @@
                 $chooseArrivalTime = $row["ArrivalTime"];
                 $choosePrice = $row["Price"];
 
-                    echo "<tr>";
+                echo "<tr>";
                 echo "<td><input type='radio' name='chooseflight'></td>";
                 echo '<td>' .$chooseID["id"]. '</td>';
                 echo '<td>' .$chooseDepartureCity. '</td>';
@@ -135,7 +146,14 @@
                 echo '<td>' .$chooseArrivalTime. '</td>';
                 echo '<td>' .$choosePrice. '</td>';
                 echo "</tr>";
-}
+                
+
+
+                }
+
+                //echo $chooseID;
+
+
 
                 
                 
@@ -143,8 +161,16 @@
             
           </tbody>
         </table>
-            
-            
+          <?php 
+          if(mysqli_num_rows($result2) == 0)
+                {
+                 echo "Please click <a href='index.php'>HERE</a> to go back to homepage!";  
+                }
+          
+
+else {
+?>
+    
         <div class="form-group">        
           <div class="col-sm-offset-1 col-sm-10">
             
@@ -160,7 +186,9 @@
             </form>
           </div>
         </div>
-      
+    
+<?php } ?>
+
     </div>
             
       
