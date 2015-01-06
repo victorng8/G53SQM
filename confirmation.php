@@ -15,6 +15,60 @@
 </head>
 
   <body>
+
+    <?php
+    $surname=$_POST['surname'];
+    $givenname=$_POST['givenname'];
+    $gender=$_POST['gender'];
+    $address=$_POST['address'];
+    $nationality=$_POST['nationality'];
+    $phonenumber=$_POST['phonenumber'];
+    $passport=$_POST['passport'];
+    $email=$_POST['email'];
+    $cardNo=$_POST['cardNo'];
+    $cardType=$_POST['cardType'];
+
+    if (empty($surname)) {
+    echo 'variable empty';
+    }
+
+
+
+    //else {echo $surname;}
+
+   /* echo $surname;
+    echo $givenname;
+    echo $gender;
+    echo $address
+    echo $nationality;
+    echo $phonenumber;
+    echo $passport;
+    echo $email;*/
+    
+    ?>
+
+    <?php
+    $chooseID=$_POST['chooseID'];
+    $chooseDepartureCity=$_POST['chooseDepartureCity'];
+    $chooseArrivalCity=$_POST['chooseArrivalCity'];
+    $chooseDepartureDate=$_POST['chooseDepartureDate'];
+    $chooseDepartureTime=$_POST['chooseDepartureTime'];
+    $chooseArrivalDate=$_POST['chooseArrivalDate'];
+    $chooseArrivalTime=$_POST['chooseArrivalTime'];
+    $choosePrice=$_POST['choosePrice'];
+
+    if (empty($chooseID)) {
+    echo 'variable empty';
+}
+    /*echo $chooseID;
+                echo $chooseDepartureCity;
+                echo $chooseArrivalCity;
+                echo $chooseDepartureDate;
+                echo $chooseDepartureTime;
+                echo $chooseArrivalDate;
+                echo $chooseArrivalTime;
+                echo $choosePrice;*/
+    ?>
     <nav class="navbar navbar-inverse navbar-static-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -72,63 +126,52 @@
     <div class="container">
       <h2>Your Ticket Has Been Booked!</h2>
         
-        <?php
-// Read parameter values from the $_GET array and copy them into variables
-            $surname = $_GET['surname'];
-            $givenname = $_GET['givenname'];
-            $gender = $_GET['gender'];
-            $address = $_GET['address'];
-            $nationality = $_GET['nationality'];
-            $phonenumber = $_GET['phonenumber'];
-            $passport = $_GET['passport'];
-            $email = $_GET['email'];
-            $cardType = $_GET['cardType'];
-            $cardNo = $_GET['cardNo'];
-
-
-            echo "<h3>Ticket From Kuala Lumpur (KUL) to Jakarta (CGK)</h3>
-      <h4>Flight on 01 JAN 2015 (JT-808). Departure Time: 09:00. Arrival Time 10:00</h4>";
+        
+<!-- Read parameter values from the $_GET array and copy them into variables -->
+        
+            <h3>Ticket From <?php echo $chooseDepartureCity?> to <?php echo $chooseArrivalCity?></h3>
+      <h4>Flight on <?php echo $chooseDepartureDate?>. Departure Time: <?php echo $chooseDepartureTime?>. Arrival Time: <?php echo $chooseArrivalTime?></h4>
       
 
-            echo "<table class='table table-responsive'>
+            <table class='table table-responsive'>
         <tbody>
           <tr> 
             <td>Name:</td>
-            <td>$givenname $surname </td>
+            <td><?php echo $givenname . ' ' . $givenname ?></td>
           </tr>
           <tr> 
             <td>Gender: </td>
-            <td>$gender</td>
+            <td><?php echo $gender ?></td>
           </tr>
           <tr> 
             <td>Address: </td>
-            <td>$address</td>
+            <td><?php echo $address?></td>
           </tr>
           <tr> 
             <td>Nationality: </td>
-            <td>$nationality</td>
+            <td><?php echo $nationality?></td>
           </tr>
           <tr> 
             <td>Phone Number: </td>
-            <td>$phonenumber</td>
+            <td><?php echo $phonenumber?></td>
           </tr>
           <tr> 
             <td>Passport No: </td>
-            <td>$passport</td>
+            <td><?php echo $passport?></td>
           </tr>
           <tr> 
             <td>Email:</td>
-            <td>$email</td>
+            <td><?php echo $email?></td>
           </tr>
           <tr> 
             <td>Card Type:</td>
-            <td>$cardType</td>
+            <td><?php echo $cardType?></td>
           </tr>
           <tr> 
             <td>Card Number:</td>
-            <td>$cardNo</td>
-          </tr>";
-        ?>
+            <td><?php echo $cardNo?></td>
+          </tr>
+        
         </tbody>
         
       </table>

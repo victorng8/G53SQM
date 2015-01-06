@@ -11,6 +11,30 @@
 </head>
 
   <body>
+
+    <?php
+    $chooseID=$_POST['chooseID'];
+    $chooseDepartureCity=$_POST['chooseDepartureCity'];
+    $chooseArrivalCity=$_POST['chooseArrivalCity'];
+    $chooseDepartureDate=$_POST['chooseDepartureDate'];
+    $chooseDepartureTime=$_POST['chooseDepartureTime'];
+    $chooseArrivalDate=$_POST['chooseArrivalDate'];
+    $chooseArrivalTime=$_POST['chooseArrivalTime'];
+    $choosePrice=$_POST['choosePrice'];
+
+    if (empty($chooseID)) {
+    echo 'variable empty';
+}
+    /*echo $chooseID;
+                echo $chooseDepartureCity;
+                echo $chooseArrivalCity;
+                echo $chooseDepartureDate;
+                echo $chooseDepartureTime;
+                echo $chooseArrivalDate;
+                echo $chooseArrivalTime;
+                echo $choosePrice;*/
+    ?>
+
     <nav class="navbar navbar-inverse navbar-static-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -68,7 +92,7 @@
       <!-- Booking Details -->
     <div class="container">
       <h2>Fill Your Booking Details</h2>
-      <form class="form-horizontal" role="form" id="bookFlight" action="confirmation.php" method="get">
+      <form class="form-horizontal" role="form" id="bookFlight" action="confirmation.php" method="post">
         <div class="form-group">
           <label class="control-label col-sm-2" for="Name:">Surname:</label>
           <div class="col-sm-10">
@@ -136,6 +160,14 @@
         <div class="form-group">        
           <div class="col-sm-offset-2 col-sm-10">
             <input type="submit" class="btn btn-default" value = "Book">
+            <input type="hidden" name="chooseID" value="<?php echo $chooseID ?>">
+            <input type="hidden" name="chooseDepartureCity" value="<?php echo $chooseDepartureCity ?>">
+            <input type="hidden" name="chooseArrivalCity" value="<?php echo $chooseArrivalCity ?>">
+            <input type="hidden" name="chooseDepartureDate" value="<?php echo $chooseDepartureDate ?>">
+            <input type="hidden" name="chooseDepartureTime" value="<?php echo $chooseDepartureTime ?>">
+            <input type="hidden" name="chooseArrivalDate" value="<?php echo $chooseArrivalTime ?>">
+            <input type="hidden" name="chooseArrivalTime" value="<?php echo $chooseArrivalTime ?>">
+            <input type="hidden" name="choosePrice" value="<?php echo $choosePrice ?>">
           </div>
         </div>
       </form>

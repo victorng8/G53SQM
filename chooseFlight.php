@@ -78,7 +78,7 @@
       <h2>Choose Your Flight</h2>
         
         <!--*** The flight search results ***-->
-      <form role="form">
+      <form role="form" method="post" action="bookFlight.php">
         <table class="table"> 
           <thead>
             <tr>
@@ -104,7 +104,7 @@
 
 
                 $query="SELECT id, prefix, DepartureCity, ArrivalCity, DepartureDate, DepartureTime, ArrivalDate, ArrivalTime, Price FROM flightsX WHERE prefix=$departure AND ArrivalCity = '$arrival' ";
-                print $query;
+                //print $query;
 
                 //$departCity = "SELECT DepartureCity, ArrivalCity FROM flightsX WHERE prefix=1 AND ArrivalCity=";
                 //print $departCity;
@@ -114,26 +114,26 @@
                 $result2 = mysqli_query($con,$query);
                 
                 while($row = mysqli_fetch_assoc($result2)) {
-                //echo $row["id"];
-                //echo $row["prefix"];
-                //echo $row["DepartureCity"];
-                //echo $row["ArrivalCity"];
-                //echo $row["DepartureDate"];
-                //echo $row["DepartureTime"];
-                //echo $row["ArrivalDate"];
-                //echo $row["ArrivalTime"];
-                //echo $row["Price"];
+                $chooseID = $row["id"];
+                $choosePrefix = $row["prefix"];
+                $chooseDepartureCity = $row["DepartureCity"];
+                $chooseArrivalCity = $row["ArrivalCity"];
+                $chooseDepartureDate = $row["DepartureDate"];
+                $chooseDepartureTime = $row["DepartureTime"];
+                $chooseArrivalDate = $row["ArrivalDate"];
+                $chooseArrivalTime = $row["ArrivalTime"];
+                $choosePrice = $row["Price"];
 
                     echo "<tr>";
                 echo "<td><input type='radio' name='chooseflight'></td>";
-                echo '<td>' .$row["id"]. '</td>';
-                echo '<td>' .$row["DepartureCity"]. '</td>';
-                echo '<td>' .$row["ArrivalCity"]. '</td>';
-                echo '<td>' .$row["DepartureDate"]. '</td>';
-                echo '<td>' .$row["DepartureTime"]. '</td>';
-                echo '<td>' .$row["ArrivalDate"]. '</td>';
-                echo '<td>' .$row["ArrivalTime"]. '</td>';
-                echo '<td>' .$row["Price"]. '</td>';
+                echo '<td>' .$chooseID["id"]. '</td>';
+                echo '<td>' .$chooseDepartureCity. '</td>';
+                echo '<td>' .$chooseArrivalCity. '</td>';
+                echo '<td>' .$chooseDepartureDate. '</td>';
+                echo '<td>' .$chooseDepartureTime. '</td>';
+                echo '<td>' .$chooseArrivalDate. '</td>';
+                echo '<td>' .$chooseArrivalTime. '</td>';
+                echo '<td>' .$choosePrice. '</td>';
                 echo "</tr>";
 }
 
@@ -147,10 +147,20 @@
             
         <div class="form-group">        
           <div class="col-sm-offset-1 col-sm-10">
+            
             <input type="submit" class="btn btn-default" value="Flight Chosen">
+            <input type="hidden" name="chooseID" value="<?php echo $chooseID ?>">
+            <input type="hidden" name="chooseDepartureCity" value="<?php echo $chooseDepartureCity ?>">
+            <input type="hidden" name="chooseArrivalCity" value="<?php echo $chooseArrivalCity ?>">
+            <input type="hidden" name="chooseDepartureDate" value="<?php echo $chooseDepartureDate ?>">
+            <input type="hidden" name="chooseDepartureTime" value="<?php echo $chooseDepartureTime ?>">
+            <input type="hidden" name="chooseArrivalDate" value="<?php echo $chooseArrivalTime ?>">
+            <input type="hidden" name="chooseArrivalTime" value="<?php echo $chooseArrivalTime ?>">
+            <input type="hidden" name="choosePrice" value="<?php echo $choosePrice ?>">
+            </form>
           </div>
         </div>
-      </form>
+      
     </div>
             
       
