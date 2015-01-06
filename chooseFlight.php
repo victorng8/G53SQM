@@ -137,7 +137,7 @@
 
                 echo "<tr>";
                 echo "<td><input type='radio' name='chooseflight'></td>";
-                echo '<td>' .$chooseID["id"]. '</td>';
+                echo '<td>' .$chooseID. '</td>';
                 echo '<td>' .$chooseDepartureCity. '</td>';
                 echo '<td>' .$chooseArrivalCity. '</td>';
                 echo '<td>' .$chooseDepartureDate. '</td>';
