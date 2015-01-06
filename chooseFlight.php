@@ -95,13 +95,30 @@
           </thead>
           <tbody>
             <?php
+
+            echo 'hello';
                 
                 $departure=$_POST['departure'];
                 $arrival=$_POST['arrival'];
                 $departdate=$_POST['departdate'];
 
+
+                $departCity = "SELECT DepartureCity FROM flightsX WHERE prefix=1 AND ArrivalCity='Bangkok (DMK)' ";
+                //print $departCity;
+                /*$departCityResult = $dbo->query($departCity);
+                return $departCityResult->fetchAll(PDO::FETCH_ASSOC);*/
+                echo 'zz1';
+                $result2 = mysqli_query($con,$departCity);
+                echo 'zz';
+                while($row = mysqli_fetch_assoc($result2)) {
+                echo $row["DepartureCity"];}
+
+
+                //$departCityResult = mysqli_query($departCity);
+                //$departCity;
+
                 $query="SELECT id FROM flightsX WHERE prefix=$departure AND ArrivalCity = '$arrival' ";
-                print $query;
+                //print $query;
                 //$result=mysqli_query($query);
 
                 $num=mysqli_numrows($result);
