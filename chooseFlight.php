@@ -96,72 +96,54 @@
           <tbody>
             <?php
 
-            echo 'hello';
+            //echo 'hello';
                 
                 $departure=$_POST['departure'];
                 $arrival=$_POST['arrival'];
                 $departdate=$_POST['departdate'];
 
 
-                $departCity = "SELECT DepartureCity FROM flightsX WHERE prefix=1 AND ArrivalCity='Bangkok (DMK)' ";
+                $query="SELECT id, prefix, DepartureCity, ArrivalCity, DepartureDate, DepartureTime, ArrivalDate, ArrivalTime, Price FROM flightsX WHERE prefix=$departure AND ArrivalCity = '$arrival' ";
+                print $query;
+
+                //$departCity = "SELECT DepartureCity, ArrivalCity FROM flightsX WHERE prefix=1 AND ArrivalCity=";
                 //print $departCity;
                 /*$departCityResult = $dbo->query($departCity);
                 return $departCityResult->fetchAll(PDO::FETCH_ASSOC);*/
-                echo 'zz1';
-                $result2 = mysqli_query($con,$departCity);
-                echo 'zz';
+
+                $result2 = mysqli_query($con,$query);
+                
                 while($row = mysqli_fetch_assoc($result2)) {
-                echo $row["DepartureCity"];}
+                //echo $row["id"];
+                //echo $row["prefix"];
+                //echo $row["DepartureCity"];
+                //echo $row["ArrivalCity"];
+                //echo $row["DepartureDate"];
+                //echo $row["DepartureTime"];
+                //echo $row["ArrivalDate"];
+                //echo $row["ArrivalTime"];
+                //echo $row["Price"];
 
-
-                //$departCityResult = mysqli_query($departCity);
-                //$departCity;
-
-                $query="SELECT id FROM flightsX WHERE prefix=$departure AND ArrivalCity = '$arrival' ";
-                //print $query;
-                //$result=mysqli_query($query);
-
-                $num=mysqli_numrows($result);
-                mysql_close();
-
-                //wenyu
-
-                if($result = $mysqli->query($query))
-                {
-                    while ($row = $result->fetch_assoc()){
-                        printf ("%s (%s)\n", $row["id"], $row["prefix"]);
-                    }
-                }
-
-                //wenyu
-
-                $i=0;
-                while ($i < $num) {
-                    $prefix=mysqli_result($result,$i,"prefix");
-                    $id=mysqli_result($result,$i,"id");
-                    $DepartureTime=mysqli_result($result,$i,"DepartureTime");
-                    $ArrivalDate= mysqli_result($result,$i,"ArrivalDate");
-                    $ArrivalTime=mysqli_result($result,$i,"ArrivalTime");
-                    $Price =mysqli_result($result,$i,"Price");
-    
-                echo "<tr>";
+                    echo "<tr>";
                 echo "<td><input type='radio' name='chooseflight'></td>";
-                echo "<td>$prefix-$id</td>";
-                echo "<td>$DepartureCity</td>";
-                echo "<td>$ArrivalCity</td>";
-                echo "<td>$DepartureDate</td>";
-                echo "<td>$DepartureTime</td>";
-                echo "<td>$ArrivalDate</td>";
-                echo "<td>$ArrivalTime</td>";
-                echo "<td>$Price</td>";
+                echo '<td>' .$row["id"]. '</td>';
+                echo '<td>' .$row["DepartureCity"]. '</td>';
+                echo '<td>' .$row["ArrivalCity"]. '</td>';
+                echo '<td>' .$row["DepartureDate"]. '</td>';
+                echo '<td>' .$row["DepartureTime"]. '</td>';
+                echo '<td>' .$row["ArrivalDate"]. '</td>';
+                echo '<td>' .$row["ArrivalTime"]. '</td>';
+                echo '<td>' .$row["Price"]. '</td>';
                 echo "</tr>";
-                    
-                $i++;
-                }
+}
+
+                
+                
             ?>
             
           </tbody>
         </table>
+            
             
         <div class="form-group">        
           <div class="col-sm-offset-1 col-sm-10">

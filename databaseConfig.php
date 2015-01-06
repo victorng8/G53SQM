@@ -15,7 +15,7 @@ if (mysqli_connect_errno($con))
  
 else
 {
-    echo "Connection successful";
+    //echo "Connection successful";
 }
 
 //////// Do not Edit below /////////
